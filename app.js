@@ -4,13 +4,12 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import calendarRoutes from "./routes/calendarRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
-import oauth2Client from "./utils/oauth2Client.js";
 
 const app = express();
 
 app.use(
     cors({
-        origin: "https://calendarji.vercel.app",
+        origin: "https://calendarapi.vercel.app",
         // origin: "http://localhost:5173",
         credentials: true,
     })
