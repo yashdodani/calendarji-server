@@ -152,6 +152,7 @@ export async function eventsRedirect(req, res) {
 
         res.cookie("jwt", jwt_token, {
             maxAge: 24 * 60 * 60 * 1000,
+            httpOnly: true,
         });
         console.log(`Redirecting to ${redirectUrl}`);
         res.redirect(redirectUrl);
@@ -211,4 +212,18 @@ export async function protect(req, res, next) {
     req.credentials = credentials;
     req.userId = calendarToken.userId;
     next();
+}
+
+export function isLoggedIn(req, res) {
+    const token = req.cookies.jwt;
+    if (!token) {
+        return res.status(401).json({ isAuthenticated: false });
+    }
+
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+        res.status(200).json({ isAuthenticated: true, userId: decoded });
+    } catch (err) {
+        res.status(401).json({ isAuthenticated: false });
+    }
 }
