@@ -152,6 +152,7 @@ export async function eventsRedirect(req, res) {
 
         res.cookie("jwt", jwt_token, {
             maxAge: 24 * 60 * 60 * 1000,
+            httpOnly: true,
         });
         console.log(`Redirecting to ${redirectUrl}`);
         res.redirect(redirectUrl);
