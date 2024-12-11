@@ -8,10 +8,7 @@ import oauth2Client from './utils/oauth2Client.js'
 
 const app = express();
 
-app.use(cors({
-    origin: 'http://localhost:5173',
-    credentials: true
-})) // allow all origin
+app.use(cors({});
 
 app.use(cookieParser())
 
