@@ -8,7 +8,7 @@ import oauth2Client from './utils/oauth2Client.js'
 
 const app = express();
 
-app.use(cors({});
+app.use(cors({}));
 
 app.use(cookieParser())
 
