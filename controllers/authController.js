@@ -69,9 +69,7 @@ export async function getAuth(req, res) {
             };
 
             oauth2Client.setCredentials(credentials);
-            res.status(200).json({
-                message: "User Already Logged In",
-            });
+            res.redirect(redirectUrl);
             return;
         }
     }
@@ -155,6 +153,7 @@ export async function eventsRedirect(req, res) {
         res.cookie("jwt", jwt_token, {
             maxAge: 24 * 60 * 60 * 1000,
         });
+        console.log(`Redirecting to ${redirectUrl}`);
         res.redirect(redirectUrl);
     });
 }
